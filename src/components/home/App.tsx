@@ -1,30 +1,24 @@
+import { Route, Routes } from "react-router-dom";
+import VerificarToken from "../../pages/VerificarToken";
+import Login from "../../pages/login";
+import ProtectedRoute from "../../pages/ProtectedRoute";
+import Usuario from "../../pages/usuario";
 
-import './App.css'
 function App() {
-
   return (
-    <>
-      <div>
-       
-      <header>
-      <h1>Login</h1>
-      <input
-
-  type="text"
-  />
-  <br></br>
-  <br></br>
-
-  <input
-  type="PassWord"
-/>
-      </header>
-      <br></br>
-       <button >Login</button> 
-      </div>
-     
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<VerificarToken />} />
+      <Route path="/login" element={<Login />} />
+      <Route
+        path="/usuario"
+        element={
+          <ProtectedRoute>
+            <Usuario />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
