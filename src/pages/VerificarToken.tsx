@@ -15,4 +15,5 @@ function VerificarToken() {
 
   return <>veerificar token</>;
 }
+
 export default VerificarToken;

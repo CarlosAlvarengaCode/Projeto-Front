@@ -1,5 +1,6 @@
 import "./App.css";
 import { Link } from "react-router-dom";
+
 function Menu() {
   return (
     <>
@@ -13,7 +14,7 @@ function Menu() {
             <Link to="/usuario">usuario</Link>
           </li>
           <li>
-            <Link to="/tarefa">tarefa</Link>
+            <Link to="/tasks">tasks</Link>
           </li>
         </ul>
       </nav>
