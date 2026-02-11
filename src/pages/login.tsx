@@ -18,6 +18,7 @@ function Login() {
       const token = response.data.access_token;
       localStorage.setItem("token", token);
       navigate("/usuario");
+
       console.log("TOKEN SALVO:", token);
     } catch (error) {
       console.log("ERRO NO LOGIN:", error);

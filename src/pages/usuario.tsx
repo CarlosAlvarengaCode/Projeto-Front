@@ -18,6 +18,7 @@ function Usuario() {
 
     navigate("/login");
   }
+
   useEffect(() => {
     axios
       .get("http://localhost:3000/users", {
@@ -33,21 +34,21 @@ function Usuario() {
       });
   }, []);
   return (
-    <div className="layout">
+    <div>
       <button onClick={deletarToken}>sair</button>
-
-      <main className="content">
-        <header className="hender">
+      <button onClick={() => navigate("/tasks")}>tasks</button>
+      <main>
+        <header>
           <h1> usuario</h1>
-          <button className="btn-primary">Adicionar</button>
+          <button>Adicionar</button>
         </header>
-        <div className="filters">
+        <div>
           <select>
             <option>Selecionar</option>
           </select>
           <input type="text" placeholder="Buscar Usuario" />
           <button>Buscar</button>
-          <button className="btn-clear">limpar</button>
+          <button>limpar</button>
         </div>
         <div>
           <table border={2}>
