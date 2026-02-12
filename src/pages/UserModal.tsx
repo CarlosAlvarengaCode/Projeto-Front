@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import "./userModal.css";
 type User = {
   id?: number;
   name: string;
@@ -67,43 +67,53 @@ export default function UserModal({ isOpen, onClose, user, onSuccess }: Props) {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h2>{user ? "Editar Usuário" : "Novo Usuário"}</h2>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Nome:
+    <div className="user-modal-overlay">
+      <div className="user-modal-container">
+        <h2 className="user-modal-title">
+          {user ? "Editar Usuário" : "Novo Usuário"}
+        </h2>
+
+        <form className="user-modal-form" onSubmit={handleSubmit}>
+          <div className="user-modal-field">
+            <label>Nome</label>
             <input
+              className="user-modal-input"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
-          </label>
+          </div>
 
-          <label>
-            Email:
+          <div className="user-modal-field">
+            <label>Email</label>
             <input
+              className="user-modal-input"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-          </label>
-          <label>
-            Senha:
+          </div>
+
+          <div className="user-modal-field">
+            <label>Senha</label>
             <input
+              className="user-modal-input"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder={user ? "Alterar senha" : "Digite a senha"}
               required={!user}
             />
-          </label>
+          </div>
 
-          <div className="modal-buttons">
-            <button type="submit">{user ? "Salvar" : "Adicionar"}</button>
-            <button type="button" onClick={onClose}>
+          <div className="user-modal-buttons">
+            <button type="submit" className="btn-primary">
+              {user ? "Salvar" : "Adicionar"}
+            </button>
+
+            <button type="button" className="btn-danger" onClick={onClose}>
               Cancelar
             </button>
           </div>

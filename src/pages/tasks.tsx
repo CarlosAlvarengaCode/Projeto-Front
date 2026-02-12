@@ -13,7 +13,7 @@ type Task = {
 };
 
 export function Task() {
-  const [users, setUsers] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [taskSelecionada, setTaskSelecionada] = useState<Task | null>(null);
 
@@ -33,7 +33,7 @@ export function Task() {
         },
       })
       .then((response) => {
-        setUsers(response.data);
+        setTasks(response.data);
       })
       .catch((error) => {
         console.log("Erro ao buscar tasks:", error);
@@ -58,59 +58,92 @@ export function Task() {
   }, []);
 
   return (
-    <div>
-      <button onClick={deletarToken}>sair</button>
+    <div className="tasks-container">
+      <div className="tasks-top-buttons">
+        <button className="tasks-btn-sair" onClick={deletarToken}>
+          Sair
+        </button>
+      </div>
 
       <main>
-        <header>
+        <div className="tasks-header">
           <h1>Tasks</h1>
-          <button
-            onClick={() => {
-              setTaskSelecionada(null);
-              setIsModalOpen(true);
-            }}
-          >
-            Nova Task
-          </button>
-        </header>
 
-        <table border={2}>
+          <div className="tasks-header-buttons">
+            <button
+              className="tasks-btn-nova"
+              onClick={() => {
+                setTaskSelecionada(null);
+                setIsModalOpen(true);
+              }}
+            >
+              Nova Task
+            </button>
+
+            <button
+              className="tasks-btn-usuarios"
+              onClick={() => navigate("/usuario")}
+            >
+              Usuários
+            </button>
+          </div>
+        </div>
+
+        <table className="tasks-table">
           <thead>
             <tr>
-              <th>id</th>
-              <th>descrição</th>
-              <th>título</th>
-              <th>status</th>
-              <th>usuarioId</th>
-              <th>ações</th>
+              <th>ID</th>
+              <th>Descrição</th>
+              <th>Título</th>
+              <th>Status</th>
+              <th>UsuarioId</th>
+              <th>Ações</th>
             </tr>
           </thead>
 
           <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.description}</td>
-                <td>{user.title}</td>
-                <td>{user.status}</td>
-                <td>{user.usuarioId}</td>
+            {tasks.map((task) => (
+              <tr key={task.id}>
+                <td>{task.id}</td>
+                <td>{task.description}</td>
+                <td>{task.title}</td>
                 <td>
+                  <span
+                    className={`tasks-status ${
+                      task.status === "concluida"
+                        ? "status-concluida"
+                        : "status-pendente"
+                    }`}
+                  >
+                    {task.status}
+                  </span>
+                </td>
+                <td>{task.usuarioId}</td>
+
+                <td className="tasks-actions">
                   <button
+                    className="tasks-btn-editar"
                     onClick={() => {
-                      setTaskSelecionada(user);
+                      setTaskSelecionada(task);
                       setIsModalOpen(true);
                     }}
                   >
-                    alterar
+                    Alterar
                   </button>
 
-                  <button onClick={() => deletarTask(user.id)}>apagar</button>
+                  <button
+                    className="tasks-btn-apagar"
+                    onClick={() => deletarTask(task.id)}
+                  >
+                    Apagar
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </main>
+
       <TaskModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

@@ -18,13 +18,13 @@ export function Usuario() {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
-  // Sair da sessão
+  // Deletar token e redirecionar para login
   function deletarToken() {
     localStorage.removeItem("token");
     navigate("/login");
   }
 
-  // Carregar usuários
+  // Carregar usuários da API
   function carregarUsuarios() {
     axios
       .get("http://localhost:3000/users", {
@@ -49,14 +49,26 @@ export function Usuario() {
   }, []);
 
   return (
-    <div>
-      <button onClick={() => navigate("/tasks")}>Tasks</button>
-      <button onClick={deletarToken}>Sair</button>
+    <div className="usuario-container">
+      <div className="usuario-top-buttons">
+        <button
+          className="usuario-btn-tasks"
+          onClick={() => navigate("/tasks")}
+        >
+          Tasks
+        </button>
+
+        <button className="usuario-btn-sair" onClick={deletarToken}>
+          Sair
+        </button>
+      </div>
 
       <main>
-        <header>
+        <div className="usuario-header">
           <h1>Usuários</h1>
+
           <button
+            className="usuario-btn-novo"
             onClick={() => {
               setUserSelecionado(null);
               setIsModalOpen(true);
@@ -64,9 +76,9 @@ export function Usuario() {
           >
             Novo Usuário
           </button>
-        </header>
+        </div>
 
-        <table border={2}>
+        <table className="usuario-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -75,14 +87,16 @@ export function Usuario() {
               <th>Ações</th>
             </tr>
           </thead>
+
           <tbody>
             {users.map((user) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>
+                <td className="usuario-actions">
                   <button
+                    className="usuario-btn-editar"
                     onClick={() => {
                       setUserSelecionado(user);
                       setIsModalOpen(true);
@@ -91,7 +105,10 @@ export function Usuario() {
                     Alterar
                   </button>
 
-                  <button onClick={() => deletarUsuario(user.id)}>
+                  <button
+                    className="usuario-btn-apagar"
+                    onClick={() => deletarUsuario(user.id)}
+                  >
                     Apagar
                   </button>
                 </td>

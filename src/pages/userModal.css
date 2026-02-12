@@ -1,0 +1,104 @@
+.user-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+.user-modal-container {
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.user-modal-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #1e293b;
+}
+
+.user-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.user-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.user-modal-field label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.user-modal-input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.user-modal-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.user-modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.user-modal-buttons button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+/* reaproveitando padrão */
+.btn-primary {
+  background-color: #22c55e;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #16a34a;
+}
+
+.btn-danger {
+  background-color: #ef4444;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626;
+}

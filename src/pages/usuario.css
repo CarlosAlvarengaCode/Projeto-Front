@@ -1,38 +1,133 @@
-.de{ background: #ffffff;
-  padding: 250px;
-  border-radius: 12px;
-  width: 100%;
-  max-width: 350px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2)
-     
-}
-.filters{
-  font-size: 100px;
-  
-}
-.btn-clear{
-  button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  background: #667eea;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-}
-.layout {
+/* Container principal */
+.usuario-container {
+  padding: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f7fa;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.content {
-  background: #fff;
-width: 90%;
-  max-width: 900px;
-  border-radius: 12px;
-  padding: 24px;
- }
+/* Topo com botões */
+.usuario-top-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.usuario-top-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+/* Botão Tasks */
+.usuario-btn-tasks {
+  background-color: #2563eb;
+  color: white;
+}
+
+.usuario-btn-tasks:hover {
+  background-color: #1e40af;
+}
+
+/* Botão Sair */
+.usuario-btn-sair {
+  background-color: #ef4444;
+  color: white;
+}
+
+.usuario-btn-sair:hover {
+  background-color: #b91c1c;
+}
+
+/* Header */
+.usuario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.usuario-header h1 {
+  margin: 0;
+  color: #333;
+}
+
+/* Botão Novo Usuário */
+.usuario-btn-novo {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.usuario-btn-novo:hover {
+  background-color: #059669;
+}
+
+/* Tabela */
+.usuario-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.usuario-table thead {
+  background-color: #2563eb;
+  color: white;
+}
+
+.usuario-table th,
+.usuario-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.usuario-table tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: 0.2s;
+}
+
+.usuario-table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* Botões da tabela */
+.usuario-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.usuario-btn-editar {
+  background-color: #f59e0b;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.usuario-btn-editar:hover {
+  background-color: #d97706;
+}
+
+.usuario-btn-apagar {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.usuario-btn-apagar:hover {
+  background-color: #b91c1c;
+}

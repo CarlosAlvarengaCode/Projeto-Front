@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import "./taskModal.css";
 type Task = {
   id?: number;
   title: string;
@@ -22,7 +22,6 @@ export function TaskModal({ isOpen, onClose, onSuccess, task }: Props) {
 
   const token = localStorage.getItem("token");
 
-  // Quando abre o modal para editar
   useEffect(() => {
     if (task) {
       setTitle(task.title);
@@ -64,29 +63,53 @@ export function TaskModal({ isOpen, onClose, onSuccess, task }: Props) {
   }
 
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <h2>{task ? "Editar Task" : "Nova Task"}</h2>
+    <div className="tasks-modal-overlay">
+      <div className="tasks-modal-content">
+        <h2 className="tasks-modal-title">
+          {task ? "Editar Task" : "Nova Task"}
+        </h2>
 
-        <input
-          placeholder="Título"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        <div className="tasks-form-group">
+          <label>Título</label>
+          <input
+            className="tasks-input"
+            placeholder="Digite o título"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
 
-        <input
-          placeholder="Descrição"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <div className="tasks-form-group">
+          <label>Descrição</label>
+          <input
+            className="tasks-input"
+            placeholder="Digite a descrição"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
 
-        <select value={status} onChange={(e) => setStatus(e.target.value)}>
-          <option value="pendente">Pendente</option>
-          <option value="concluida">Concluída</option>
-        </select>
+        <div className="tasks-form-group">
+          <label>Status</label>
+          <select
+            className="tasks-select"
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+          >
+            <option value="pendente">Pendente</option>
+            <option value="concluida">Concluída</option>
+          </select>
+        </div>
 
-        <button onClick={salvar}>Salvar</button>
-        <button onClick={onClose}>Cancelar</button>
+        <div className="tasks-modal-buttons">
+          <button className="tasks-btn-save" onClick={salvar}>
+            Salvar
+          </button>
+
+          <button className="tasks-btn-cancel" onClick={onClose}>
+            Cancelar
+          </button>
+        </div>
       </div>
     </div>
   );
