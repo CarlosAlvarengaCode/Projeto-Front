@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./taskModal.css";
+type User = {
+  id: number;
+  name: string;
+};
 type Task = {
   id?: number;
   title: string;
@@ -21,26 +25,39 @@ export function TaskModal({ isOpen, onClose, onSuccess, task }: Props) {
   const [status, setStatus] = useState("pendente");
 
   const token = localStorage.getItem("token");
+  const [user, setUser] = useState<User[]>([]);
+  const [userId, setUsersId] = useState<number>(0);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/users", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        setUser(response.data);
+      });
+  }, [token]);
 
   useEffect(() => {
     if (task) {
       setTitle(task.title);
       setDescription(task.description || "");
       setStatus(task.status || "pendente");
+      setUsersId((task as any).user?.id || 0);
     } else {
       setTitle("");
       setDescription("");
       setStatus("pendente");
+      setUsersId(0);
     }
   }, [task]);
 
   if (!isOpen) return null;
 
   function salvar() {
-    const payload = { title, description, status };
+    const payload = { title, description, status, userId };
 
     if (task?.id) {
-      // PUT (editar)
       axios
         .put(`http://localhost:3000/tasks/${task.id}`, payload, {
           headers: { Authorization: `Bearer ${token}` },
@@ -50,7 +67,6 @@ export function TaskModal({ isOpen, onClose, onSuccess, task }: Props) {
           onClose();
         });
     } else {
-      // POST (criar)
       axios
         .post("http://localhost:3000/tasks", payload, {
           headers: { Authorization: `Bearer ${token}` },
@@ -98,6 +114,21 @@ export function TaskModal({ isOpen, onClose, onSuccess, task }: Props) {
           >
             <option value="pendente">Pendente</option>
             <option value="concluida">Concluída</option>
+          </select>
+        </div>
+        <div className="taks-from-group">
+          <label>Usuário</label>
+          <select
+            className="tasks-select"
+            value={userId}
+            onChange={(e) => setUsersId(Number(e.target.value))}
+          >
+            <option value={0}>Selecione um usuário</option>
+            {user.map((u) => (
+              <option key={u.id} value={u.id}>
+                {u.name}
+              </option>
+            ))}
           </select>
         </div>
 

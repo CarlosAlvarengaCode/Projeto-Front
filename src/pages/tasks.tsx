@@ -4,12 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { TaskModal } from "./taskModal";
 import "./tasks.css";
 
+type User = {
+  id: number;
+  email: string;
+};
+
 type Task = {
   id: number;
   title: string;
   description?: string;
   status?: string;
-  usuarioId: number;
+  user?: User;
 };
 
 export function Task() {
@@ -96,7 +101,7 @@ export function Task() {
               <th>Descrição</th>
               <th>Título</th>
               <th>Status</th>
-              <th>UsuarioId</th>
+              <th>Email</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -118,7 +123,7 @@ export function Task() {
                     {task.status}
                   </span>
                 </td>
-                <td>{task.usuarioId}</td>
+                <td>{task.user?.email}</td>
 
                 <td className="tasks-actions">
                   <button

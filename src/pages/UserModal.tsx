@@ -51,7 +51,6 @@ export default function UserModal({ isOpen, onClose, user, onSuccess }: Props) {
         })
         .catch((err) => console.log("Erro ao atualizar usuário:", err));
     } else {
-      // Criar usuário (POST)
       axios
         .post("http://localhost:3000/users", data, {
           headers: { Authorization: `Bearer ${token}` },

@@ -81,9 +81,9 @@ export function Usuario() {
         <table className="usuario-table">
           <thead>
             <tr>
-              <th>ID</th>
+              <th>Id</th>
               <th>Nome</th>
-              <th>Email</th>
+              <th> Email</th>
               <th>Ações</th>
             </tr>
           </thead>
