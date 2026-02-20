@@ -4,6 +4,7 @@ import "./taskModal.css";
 type User = {
   id: number;
   name: string;
+  email: string;
 };
 type Task = {
   id?: number;
@@ -92,7 +93,7 @@ export function TaskModal({ isOpen, onClose, onSuccess, task }: Props) {
             placeholder="Digite o título"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-          />
+          />{" "}
         </div>
 
         <div className="tasks-form-group">
@@ -126,7 +127,7 @@ export function TaskModal({ isOpen, onClose, onSuccess, task }: Props) {
             <option value={0}>Selecione um usuário</option>
             {user.map((u) => (
               <option key={u.id} value={u.id}>
-                {u.name}
+                {u.email}
               </option>
             ))}
           </select>

@@ -4,13 +4,14 @@ import Login from "../../pages/login";
 import ProtectedRoute from "../../pages/ProtectedRoute";
 import { Usuario } from "../../pages/usuario";
 import { Task } from "../../pages/tasks";
-
+import { Pato } from "../../pages/pato";
 function App() {
   return (
     <Routes>
       <Route path="/" element={<VerificarToken />} />
       <Route path="/login" element={<Login />} />
       <Route path="/tasks" element={<Task />} />
+      <Route path="/Pato" element={<Pato />} />
       <Route
         path="/usuario"
         element={

@@ -14,10 +14,9 @@ export function Usuario() {
   const [users, setUsers] = useState<User[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userSelecionado, setUserSelecionado] = useState<User | null>(null);
-
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-
+  const nome = localStorage.getItem("name");
   // Deletar token e redirecionar para login
   function deletarToken() {
     localStorage.removeItem("token");
@@ -66,7 +65,7 @@ export function Usuario() {
       <main>
         <div className="usuario-header">
           <h1>Usuários</h1>
-
+          <h3>{nome}</h3>
           <button
             className="usuario-btn-novo"
             onClick={() => {

@@ -96,4 +96,15 @@
     opacity: 1;
     transform: scale(1);
   }
+ 
 }
+.users-select {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+
